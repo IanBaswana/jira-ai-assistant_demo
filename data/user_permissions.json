@@ -1,0 +1,46 @@
+{
+  "permissions": {
+    "user-001": {
+      "projects": ["FIN", "SEC"],
+      "can_view_all_issues": true,
+      "can_view_comments": true,
+      "restricted_labels": []
+    },
+    "user-003": {
+      "projects": ["FIN"],
+      "can_view_all_issues": true,
+      "can_view_comments": true,
+      "restricted_labels": ["compliance"]
+    },
+    "user-008": {
+      "projects": ["FIN"],
+      "can_view_all_issues": false,
+      "viewable_components": ["Client Portal", "Frontend"],
+      "can_view_comments": true,
+      "restricted_labels": ["security", "compliance"]
+    },
+    "user-010": {
+      "projects": ["FIN"],
+      "can_view_all_issues": false,
+      "viewable_components": ["Risk Management", "Data Science"],
+      "can_view_comments": false,
+      "restricted_labels": ["security", "compliance", "pentest"]
+    },
+    "guest-user": {
+      "projects": [],
+      "can_view_all_issues": false,
+      "can_view_comments": false,
+      "restricted_labels": ["*"]
+    }
+  },
+  "permission_rules": {
+    "description": "Permission logic for the RAG system",
+    "rules": [
+      "Users can only see issues from projects they have access to",
+      "If can_view_all_issues is false, user can only see issues with components in viewable_components",
+      "Issues with labels in restricted_labels are hidden from the user",
+      "If can_view_comments is false, comments are stripped from retrieved data",
+      "Guest users have no access to any issues"
+    ]
+  }
+}
